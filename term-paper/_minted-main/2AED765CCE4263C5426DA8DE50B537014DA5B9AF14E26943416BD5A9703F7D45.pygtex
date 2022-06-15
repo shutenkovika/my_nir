@@ -1,0 +1,27 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZsh{} Для точечного источника cartesian1.jl}
+\PYG{c}{\PYGZsh{} Для параллельных лучей  cartesian2.jl}
+\PYG{c}{\PYGZsh{} Для полярной системы координат polar.jl}
+\PYG{n+nv}{PROG}\PYG{o}{=}polar.jl
+
+\PYG{n+nf}{all}\PYG{o}{:} \PYG{n}{clean} \PYG{n}{maxwell} \PYG{n}{luneburg} \PYG{n}{plot}
+
+\PYG{n+nf}{maxwell}\PYG{o}{:}
+	@rm \PYGZhy{}fr ./Maxwell\PYGZus{}data
+	julia \PYG{k}{\PYGZdl{}(}PROG\PYG{k}{)} \PYG{l+s+s2}{\PYGZdq{}maxwell\PYGZdq{}}
+
+\PYG{n+nf}{luneburg}\PYG{o}{:}
+	@rm \PYGZhy{}fr ./Luneburg\PYGZus{}data
+	julia \PYG{k}{\PYGZdl{}(}PROG\PYG{k}{)} \PYG{l+s+s2}{\PYGZdq{}luneburg\PYGZdq{}}
+
+\PYG{n+nf}{plot}\PYG{o}{:}
+	python3 plot.py \PYG{k}{\PYGZdl{}(}PROG\PYG{k}{)}
+
+\PYG{n+nf}{clean}\PYG{o}{:}
+	@rm \PYGZhy{}fr ./Luneburg\PYGZus{}data
+	@rm \PYGZhy{}fr ./Maxwell\PYGZus{}data
+	@rm \PYGZhy{}f *.pdf
+	@rm \PYGZhy{}f *.png
+
+
+\end{Verbatim}

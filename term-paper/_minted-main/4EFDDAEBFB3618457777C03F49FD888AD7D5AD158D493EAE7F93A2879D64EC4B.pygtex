@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{using} \PYG{n}{Pkg}
+\PYG{n}{Pkg}\PYG{o}{.}\PYG{n}{add}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}DifferentialEquations\PYGZdq{}}\PYG{p}{)}
+\PYG{k}{using} \PYG{n}{DifferentialEquations}
+
+\PYG{n}{pr} \PYG{o}{=} \PYG{l+m+mf}{0.0} \PYG{c}{\PYGZsh{} initial value of the drop function}
+\PYG{n}{T} \PYG{o}{=} \PYG{l+m+mf}{0.5} \PYG{c}{\PYGZsh{} round\PYGZhy{}trip time, RTT}
+\PYG{n}{N} \PYG{o}{=} \PYG{l+m+mf}{60.0} \PYG{c}{\PYGZsh{} number of TCP sessions}
+\PYG{n}{c} \PYG{o}{=} \PYG{l+m+mf}{10.0} \PYG{c}{\PYGZsh{} service intensity, Mbps}
+\PYG{n}{packet\PYGZus{}size} \PYG{o}{=} \PYG{l+m+mf}{500.0} \PYG{c}{\PYGZsh{} package size, bit}
+\PYG{n}{C} \PYG{o}{=} \PYG{l+m+mf}{125000.0}\PYG{o}{*}\PYG{n}{c} \PYG{o}{/} \PYG{n}{packet\PYGZus{}size} \PYG{c}{\PYGZsh{} service intensity, packets}
+\PYG{n}{wq} \PYG{o}{=} \PYG{l+m+mf}{0.0004} \PYG{c}{\PYGZsh{} EWMS parameter}
+\PYG{n}{q\PYGZus{}min} \PYG{o}{=} \PYG{l+m+mf}{0.25} \PYG{c}{\PYGZsh{} minimum queue threshold}
+\PYG{n}{q\PYGZus{}max} \PYG{o}{=} \PYG{l+m+mf}{0.50} \PYG{c}{\PYGZsh{} maximum queue threshold}
+\PYG{n}{R} \PYG{o}{=} \PYG{l+m+mf}{300.0} \PYG{c}{\PYGZsh{} queue size}
+\PYG{n}{p\PYGZus{}max} \PYG{o}{=} \PYG{l+m+mf}{0.1} \PYG{c}{\PYGZsh{} maximum drop probability}
+\PYG{n}{w\PYGZus{}max} \PYG{o}{=} \PYG{l+m+mf}{32.0} \PYG{c}{\PYGZsh{}maximum window size}
+\PYG{n}{p} \PYG{o}{=} \PYG{p}{(}\PYG{n}{T}\PYG{p}{,} \PYG{n}{N}\PYG{p}{,} \PYG{n}{C}\PYG{p}{,} \PYG{n}{wq}\PYG{p}{,} \PYG{n}{q\PYGZus{}min}\PYG{p}{,} \PYG{n}{q\PYGZus{}max}\PYG{p}{,} \PYG{n}{R}\PYG{p}{,} \PYG{n}{p\PYGZus{}max}\PYG{p}{,} \PYG{n}{w\PYGZus{}max}\PYG{p}{)} \PYG{c}{\PYGZsh{} vector of system parameters}
+\end{Verbatim}

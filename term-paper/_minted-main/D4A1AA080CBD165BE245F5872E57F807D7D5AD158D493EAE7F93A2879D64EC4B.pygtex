@@ -1,0 +1,41 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{include}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}src/RK.jl\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{include}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}src/parameters.jl\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c}{\PYGZsh{} Если аргументы не переданы или переданы некорректно, то рисуем линзу Люнеберга}
+\PYG{k}{if} \PYG{p}{(}\PYG{n}{length}\PYG{p}{(}\PYG{n+nb}{ARGS}\PYG{p}{)} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n+nb}{ARGS}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{==} \PYG{l+s}{\PYGZdq{}maxwell\PYGZdq{}}\PYG{p}{)}
+  \PYG{n}{lens} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}maxwell\PYGZdq{}}
+  \PYG{n}{include}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}src/maxwell.jl\PYGZdq{}}\PYG{p}{)}
+\PYG{k}{else}
+  \PYG{n}{lens} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}luneburg\PYGZdq{}}
+  \PYG{n}{include}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}src/luneburg.jl\PYGZdq{}}\PYG{p}{)}
+\PYG{k}{end}
+
+\PYG{n}{include}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}src/polar\PYGZus{}eikonal.jl\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c}{\PYGZsh{} Создаем директорию, куда будем сохранять результаты расчетов}
+\PYG{n}{isdir}\PYG{p}{(}\PYG{n}{dir}\PYG{p}{[}\PYG{n}{lens}\PYG{p}{])} \PYG{o}{?} \PYG{n+nb}{true} \PYG{o}{:} \PYG{n}{mkdir}\PYG{p}{(}\PYG{n}{dir}\PYG{p}{[}\PYG{n}{lens}\PYG{p}{])}
+
+\PYG{c}{\PYGZsh{} x\PYGZus{}0, y\PYGZus{}0, p1\PYGZus{}0, p2\PYGZus{}0}
+\PYG{n}{xn\PYGZus{}0} \PYG{o}{=} \PYG{k+kt}{Vector}\PYG{p}{\PYGZob{}}\PYG{k+kt}{Float64}\PYG{p}{\PYGZcb{}(}\PYG{n+nb}{undef}\PYG{p}{,} \PYG{l+m+mi}{4}\PYG{p}{)}
+
+\PYG{c}{\PYGZsh{} Источник точечный. Из него под углом α расходятся лучи}
+\PYG{k}{for} \PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{α}\PYG{p}{)} \PYG{k}{in} \PYG{n}{enumerate}\PYG{p}{(}\PYG{n}{range}\PYG{p}{(}\PYG{n}{α\PYGZus{}min}\PYG{p}{,} \PYG{n}{stop}\PYG{o}{=}\PYG{n}{α\PYGZus{}max}\PYG{p}{,} \PYG{n}{length}\PYG{o}{=}\PYG{l+m+mi}{30}\PYG{p}{))}
+  \PYG{c}{\PYGZsh{} Лучи исходят из одной точки, расходясь под углом α к оси Ох}
+  \PYG{n}{xn\PYGZus{}0}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{l+m+mi}{2}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{n}{r\PYGZus{}0}\PYG{p}{,} \PYG{n}{phi\PYGZus{}0}\PYG{p}{]}
+  \PYG{n}{xn\PYGZus{}0}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{o}{:}\PYG{l+m+mi}{4}\PYG{p}{]} \PYG{o}{=} \PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{n}{cos}\PYG{p}{(}\PYG{n}{α}\PYG{p}{)}\PYG{o}{*}\PYG{n}{n}\PYG{p}{(}\PYG{n}{r\PYGZus{}0}\PYG{p}{),} \PYG{o}{\PYGZhy{}}\PYG{n}{sin}\PYG{p}{(}\PYG{n}{α}\PYG{p}{)}\PYG{o}{*}\PYG{n}{n}\PYG{p}{(}\PYG{n}{r\PYGZus{}0}\PYG{p}{)]}
+
+  \PYG{n}{tn}\PYG{p}{,} \PYG{n}{xn} \PYG{o}{=} \PYG{n}{RK}\PYG{o}{.}\PYG{n}{RKp6n1}\PYG{p}{(}\PYG{n}{eikonal}\PYG{p}{,} \PYG{n}{xn\PYGZus{}0}\PYG{p}{,} \PYG{n}{h}\PYG{p}{,} \PYG{n}{t\PYGZus{}start}\PYG{p}{,} \PYG{n}{t\PYGZus{}stop}\PYG{p}{)}
+
+  \PYG{n}{file} \PYG{o}{=} \PYG{n}{open}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}./}\PYG{l+s+si}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{dir}\PYG{p}{[}\PYG{n}{lens}\PYG{p}{])}\PYG{l+s}{/data}\PYG{l+s+si}{\PYGZdl{}i}\PYG{l+s}{.txt\PYGZdq{}}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}w\PYGZdq{}}\PYG{p}{)}
+  \PYG{k}{for} \PYG{p}{(}\PYG{n}{t}\PYG{p}{,} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{)} \PYG{k}{in} \PYG{n}{zip}\PYG{p}{(}\PYG{n}{tn}\PYG{p}{,} \PYG{n}{xn}\PYG{p}{[}\PYG{o}{:}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{],} \PYG{n}{xn}\PYG{p}{[}\PYG{o}{:}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{])}
+    \PYG{n}{write}\PYG{p}{(}\PYG{n}{file}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s+si}{\PYGZdl{}t}\PYG{l+s}{,}\PYG{l+s+si}{\PYGZdl{}x}\PYG{l+s}{,}\PYG{l+s+si}{\PYGZdl{}y}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+  \PYG{k}{end}
+  \PYG{n}{close}\PYG{p}{(}\PYG{n}{file}\PYG{p}{)}
+
+  \PYG{c}{\PYGZsh{} для отображения прогресса}
+  \PYG{n}{print}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}=\PYGZdq{}}\PYG{p}{)}
+\PYG{k}{end}
+\PYG{n}{println}\PYG{p}{()}
+
+\end{Verbatim}
