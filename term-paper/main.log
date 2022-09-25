@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2022.4.19)  15 JUN 2022 12:39
+This is LuaHBTeX, Version 1.15.0 (TeX Live 2022)  (format=lualatex 2022.4.19)  16 JUN 2022 07:22
  system commands enabled.
 **main.tex
 (./main.tex
@@ -1725,12 +1725,12 @@ braces):
 >  {russian/Localnumeral}  =>  {Russiannumerals}
 >  {russian/DefineCommandsCmd}  =>  {xpg_define_language_commands:e}.
 Module polyglossia Info: Language data for russian
+(polyglossia)            loader	loadhyph-ru.tex
+(polyglossia)            righthyphenmin	2
+(polyglossia)            patterns	hyph-ru.pat.txt
 (polyglossia)            synonyms	
 (polyglossia)            hyphenation	hyph-ru.hyp.txt
-(polyglossia)            patterns	hyph-ru.pat.txt
-(polyglossia)            lefthyphenmin	2
-(polyglossia)            loader	loadhyph-ru.tex
-(polyglossia)            righthyphenmin	2 on input line 17
+(polyglossia)            lefthyphenmin	2 on input line 17
 Module polyglossia Info: Language russian was not yet loaded; created with id 2 
 on input line 17
 Package polyglossia Info: Option: Russian, numerals=arabic.
@@ -2628,14 +2628,14 @@ LaTeX Info: Redefining \nameref on input line 359.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: includefoot 
-* h-part:(L,W,R)=(85.35826pt, 483.69687pt, 28.45274pt)
+* h-part:(L,W,R)=(56.9055pt, 483.69687pt, 56.9055pt)
 * v-part:(T,H,B)=(56.9055pt, 731.23584pt, 56.9055pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
 * \textwidth=483.69687pt
 * \textheight=676.636pt
-* \oddsidemargin=13.08827pt
-* \evensidemargin=13.08827pt
+* \oddsidemargin=-15.36449pt
+* \evensidemargin=-15.36449pt
 * \topmargin=-15.36449pt
 * \headheight=0.0pt
 * \headsep=0.0pt
@@ -3933,7 +3933,7 @@ literal, 3 pdf_action, 16 pdf_colorstack nodes
    avail lists: 1:3,2:1293,3:295,4:360,5:660,6:99,7:4665,8:81,9:792,10:23,11:742
 ,12:2
  71966 multiletter control sequences out of 65536+600000
- 147 fonts using 32758615 bytes
+ 147 fonts using 32758215 bytes
  108i,10n,130p,10626b,3175s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2022/texmf-dist/fonts/truetype/paratype/ptmono/PTM55F.ttf></
 usr/local/texlive/2022/texmf-dist/fonts/truetype/paratype/ptmono/PTM75F.ttf></us
@@ -3943,7 +3943,7 @@ tf></usr/local/texlive/2022/texmf-dist/fonts/opentype/public/lm-math/latinmodern
 nmodern-math.otf></usr/local/texlive/2022/texmf-dist/fonts/truetype/paratype/pts
 erif/PTF75F.ttf></usr/local/texlive/2022/texmf-dist/fonts/truetype/paratype/ptse
 rif/PTF55F.ttf>
-Output written on main.pdf (21 pages, 269192 bytes).
+Output written on main.pdf (21 pages, 269151 bytes).
 
 PDF statistics: 345 PDF objects out of 1000 (max. 8388607)
  273 compressed objects within 3 object streams
